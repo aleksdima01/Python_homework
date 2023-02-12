@@ -4,3 +4,9 @@
 #
 # 123 -> 6 (1 + 2 + 3)
 # 100 -> 1 (1 + 0 + 0) |
+string = input("Введите трёхзначное число:")
+while len(string) != 3:
+    string = input("Вы ошиблись! Введите трёхзначное число:")
+summ = int(string[0]) + int(string[1]) + int(string[2])
+print("Сумма цифр вашего числа:", summ)
+
