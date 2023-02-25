@@ -1,0 +1,18 @@
+n = int(input("Введите количество элементов 1-го множества:"))
+m = int(input("Введите количество элементов 2-го множества:"))
+first = list()
+second = list()
+for i in range(n):
+    x = int(input(f"Введите {i + 1} элемент 1-го множества:"))
+    first.append(x)
+for i in range(m):
+    x = int(input(f"Введите {i + 1} элемент 2-го множества:"))
+    second.append(x)
+first = set(first)
+second = set(second)
+print(first)
+print(second)
+third = first.intersection(second)
+thirdl = list(third)
+thirdl.sort()
+print(thirdl)
