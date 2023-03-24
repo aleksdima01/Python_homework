@@ -1,5 +1,4 @@
 import random
-
 from create_bot import dp
 from aiogram.types import Message, ParseMode, ReplyKeyboardMarkup
 import emoji
@@ -49,13 +48,6 @@ async def process_help_command(message: Message):
                '/diff - поменять сложность',
                sep='\n')
     await message.reply(msg, parse_mode=ParseMode.MARKDOWN)
-
-# @dp.message_handler(commands=['help'])
-# async def process_help_command(message: Message):
-#     msg = text(bold('Команды:'),
-#                '/new - начало игры', '/help - список команд', '/set 300 - введи, чтобы поменять количество конфет на 300',
-#                'А еще я предупрежу, если не знаю того, что ты написал!', sep='\n')
-#     await message.reply(msg, parse_mode=ParseMode.MARKDOWN)
 
 
 @dp.message_handler(commands=['set'])
