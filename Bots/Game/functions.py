@@ -34,7 +34,7 @@ async def com_start(message: Message):
                              f'Сегодня поиграем в интересную игру! Кто последний заберет со стола конфетки'
                              + emoji.emojize(':candy:') + ', тот и победил!\n'
                              f'Брать можно от 1 до 28 штук за ход!\n'
-                             f'Жми /new_game, чтобы начать!\n'
+                             f'Жми /newgame, чтобы начать!\n'
                              f'Используй /help, чтобы увидеть список доступных команд!')
 
 
@@ -67,11 +67,15 @@ async def mes_new_game(message: Message):
     for game in total_candys.games:
         if message.from_user.id == game:
             await message.answer(f'{name} ты уже есть в игре, можешь продолжать играть!')
+            print(total_candys.user_total_candys)
+            print(total_candys.user_game_candys)
+            print(total_candys.user_game_candys.get(message.from_user.id))
             break
     else:
-        if len(total_candys.user_total_candys) == 0:
+        if total_candys.user_total_candys.get(message.from_user.id) == None:
             total_candys.user_total_candys[message.from_user.id] = 150
-        total_candys.user_game_candys[message.from_user.id] = total_candys.user_total_candys[message.from_user.id]
+            print(total_candys.user_total_candys[message.from_user.id])
+        total_candys.user_game_candys[message.from_user.id] = total_candys.user_total_candys.get(message.from_user.id)
         await message.answer(text=f'На столе {total_candys.user_game_candys.get(message.from_user.id)} конфет. Кидаем жребий, кто берет первым.')
         coin = random.randint(0, 1)
         total_candys.games[message.from_user.id] = total_candys.user_game_candys.get(message.from_user.id)
@@ -82,6 +86,7 @@ async def mes_new_game(message: Message):
             await message.answer(text=f'{message.from_user.first_name}, не расстраивайся!\n'
                                       f'Первый ход делает бот!')
             await bot_turn(message)
+
 
 
 @dp.message_handler()
